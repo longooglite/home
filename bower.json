@@ -1,0 +1,19 @@
+{
+  "name": "workflow-builder",
+  "description": "Workflow Builder",
+  "main": "main.js",
+  "authors": [
+    "Kirk Longuski <longuskikirk@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/script/lib/",
+    "test",
+    "tests"
+  ]
+}
