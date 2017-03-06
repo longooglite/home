@@ -1,0 +1,51 @@
+html
+    head
+        title= locals.title
+        link(href='public/style/serve.css', rel='stylesheet')
+    body
+        .header
+            include components/header
+        .wrapper
+            .leftnav.desktop-only
+                include  components/leftnav
+            .main
+                .resume
+                    h3 Resume
+                        |[
+                        a.resume-link(href="https://drive.google.com/file/d/0B0bcseZsc82KZ0Vrb0JvNFAzMms/view?usp=sharing")
+                            |PDF
+                        |]
+                    .resume-body
+                        .skills
+                            h4 Skills
+                            ul
+                                each skill in locals.expertise
+                                    li= skill.technology
+                                        if skill.associated.length
+                                            ul
+                                                each associated in skill.associated
+                                                    li= associated
+                        .experience
+                            h4 Experience
+                            ul
+                                li
+                                    span.company  Mountain Pass Solutions
+                                    span.type Web Developer
+                                    span.subtype Front End
+                                    span.years 2016-2017
+                                li
+                                    span.company DotSignal
+                                    span.type Web Developer
+                                    span.subtype Full Stack
+                                    span.years 2014-2016
+                                li
+                                    span.company Northwood University
+                                    span.type PC Tech
+                                    span.years 2012-2014
+                                li
+                                    span.company Dice Security
+                                    span.type Developer
+                                    span.years 2009-2011
+        .footer
+            include components/footer
+    script(src="./public/script/serve.js")

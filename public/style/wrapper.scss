@@ -1,0 +1,22 @@
+@import "utils/colors";
+@import "utils/dimensions";
+@import "utils/layouts";
+@import "utils/elements";
+.wrapper {
+    @include equalHeightColumnWrapper();
+    @include horizontalWrapper();
+    min-height: calc(100% - #{$hh + $fh});
+    position: relative;
+    top: $hh;
+    background: $white;
+    padding-bottom: $fh;
+}
+.mobile {
+    .wrapper {
+        top: calc(#{$hh} + #{$mnh});
+        min-height: calc(100% - #{$hh + $fh + $mnh});
+    }
+}
+.mini .wrapper {
+    top: $hmh;
+}

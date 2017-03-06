@@ -1,0 +1,40 @@
+html
+    head
+        title= locals.title
+        link(href='public/style/serve.css', rel='stylesheet')
+    - var iterateTimes =  function(number){ var arr = []; for(var it = 1; it < number; it++){ arr.push(it)}; return arr; };
+    body
+        .header
+            include components/header
+        .wrapper
+            .leftnav.desktop-only
+                include components/leftnav
+            .main
+                .expertise
+                    h3 Expertise
+                    table.expertise-table.sortable.searchable.selectable.desktop-only
+                        thead
+                            tr
+                                th Technology
+                                th Years experience
+                                th Associated technologies
+                        tbody
+                            each tech in locals.expertise
+                                tr
+                                    td= tech.technology
+                                    td= tech.years
+                                    td
+                                        each t in tech.associated
+                                            span= t
+
+                    .mobile-only
+                        each tech in locals.expertise
+                            div.tech
+                                h4= tech.technology
+                                h4 Years: #{tech.years}
+                                .associated Also:
+                                    each ass in tech.associated
+                                        span= ass
+        .footer
+            include components/footer
+    script(src='public/script/serve.js')

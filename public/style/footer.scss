@@ -1,0 +1,16 @@
+@import "utils/colors";
+@import "utils/dimensions";
+@import "utils/layouts";
+@import "utils/fonts";
+
+.footer {
+    @include fixedCenter();
+    height: $fh;
+    z-index: 2;
+    font-family: $display;
+    width: $gutter-width;
+    background: $white;
+    border-top: solid $pg 1px;
+    bottom: 0;
+    color: transparentize($font-gray, .5);
+}

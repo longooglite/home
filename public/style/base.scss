@@ -1,0 +1,33 @@
+@import "utils/colors";
+@import "utils/dimensions";
+@import "utils/layouts";
+@import "utils/resets";
+@import "utils/fonts";
+* {
+    box-sizing: border-box;
+}
+html {
+    background: $white;
+    height: 100%;
+    font-size: $rem;
+}
+body {
+    @include resetButtons();
+    @include resetHeaders();
+    @include gutterbody();
+    font-size: $rem;
+    color: $font-gray;
+    font-family: $mainFont;
+    max-width: $gutter-width;
+    min-height: 30rem;
+    &.modal-open {
+        overflow: hidden !important;
+    }
+    a:link {
+        text-transform: capitalize;
+        color: $pg;
+    }
+    a:visited {
+        color: $sg;
+    }
+}

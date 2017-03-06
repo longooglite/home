@@ -1,0 +1,17 @@
+@import "../font-awesome/scss/font-awesome";
+$mainFont: "Lato", sans-serif;
+$glyphs: 'FontAwesome';
+$header: "Cutive Mono", "Lucida Sans Typewriter", "Lucida Console", monaco, "Bitstream Vera Sans Mono", monospace;
+$display: "Cutive Mono", "Lucida Sans Typewriter", "Lucida Console", monaco, "Bitstream Vera Sans Mono", monospace;
+$display-size: 6em;
+@if $display == 'Poiret One' {
+    $display-size: 5.3em;
+} @else {
+    $display-size: 6.3em;
+}
+$rem: 14px;
+@mixin text-outline($color: black) {
+    text-shadow: 1px 1px 0 $color, 1px -1px 0 $color, -1px 1px 0 $color, -1px -1px 0 $color;
+}
+//generates text-outlines that make any color more visible
+//originally part of _utils.scss, originally used to make memes

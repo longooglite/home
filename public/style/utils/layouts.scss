@@ -1,0 +1,79 @@
+@import "dimensions";
+@import "colors";
+@mixin horizontal {
+    vertical-align: top;
+    display: inline-block;
+    font-size: 1rem;
+}
+@mixin horizontalWrapper {
+    font-size: 0;
+    white-space: nowrap;
+    overflow-x: auto;
+    > * {
+        white-space: normal;
+        font-size: 1rem;
+    }
+}
+@mixin gutterbody {
+    margin: 0 auto;
+}
+@mixin fixedCenter {
+    position: fixed;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}
+@mixin neatForm {
+    padding: 1em;
+    font-size: 0;
+    h1 {
+        margin: 0;
+    }
+    label, span, input {
+        display: inline-block;
+        font-size: 1rem;
+        margin: 1em 0;
+    }
+    textarea {
+        height: calc(#{$mmh} - 35%);
+        width: 90%;
+        padding: 2em;
+        display: block;
+        margin: 2em auto;
+        font-size: 1.2rem;
+        resize: none;
+        letter-spacing: 1px;
+        font-family: "Source Code Pro";
+        line-height: 1.4em;
+    }
+    legend {
+        font-size: 1rem;
+    }
+    label {
+        width: 10%;
+        padding-right: 1rem;
+        text-align: right;
+    }
+    input, select {
+        width: 90%;
+    }
+    span, label.single {
+        width: 100%;
+        text-align: left;
+    }
+    fieldset {
+        margin: 1rem 0;
+        padding: 2rem;
+        width: 100%;
+        border-color: lighten($lightgray, 20%);
+    }
+}
+@mixin equalHeightColumnWrapper {
+    overflow: hidden;
+}
+@mixin equalHeightColumn($nth, $real-padding: 0) {
+    $pb: (9999 - (20 * ($nth - 1))) + $real-padding;
+    $mb: -9999 + (20 * ($nth - 1));
+    padding-bottom: #{$pb}px;
+    margin: 0 0 #{$mb}px 0;
+}

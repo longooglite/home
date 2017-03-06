@@ -1,0 +1,18 @@
+@import "utils/colors";
+@import "utils/dimensions";
+@import "utils/layouts";
+@import "utils/elements";
+.modal-wrapper {
+    @include lightbox;
+    .modal {
+        @include modal();
+    }
+    .modal-close {
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-size: 5em;
+        color: $white;
+        cursor: pointer;
+    }
+}

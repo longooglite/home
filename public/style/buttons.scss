@@ -1,0 +1,39 @@
+@import "utils/colors";
+@import "utils/dimensions";
+@import "utils/layouts";
+body {
+    .wrapper, form {
+        @mixin btn-default {
+            padding: 1em 2em;
+            display: inline-flex;
+            justify-content: center;
+            align-content: center;
+            align-items: center;
+            background: $sg;
+            color: $white;
+            border-radius: $border-radius;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+        button,
+        input[type='submit'] {
+            @include btn-default();
+        }
+        button.center,
+        input[type='submit'].center {
+            display: flex;
+            margin: .5em auto;
+        }
+        button.disabled,
+        input[type='submit'].disabled {
+            cursor: default;
+            background: $lgray;
+            opacity: .9;
+        }
+        button.small,
+        input[type='submit'].small {
+            padding: .5em 1em;
+            font-size: .8rem;
+        }
+    }
+}

@@ -1,0 +1,15 @@
+@import "utils/colors";
+@import "utils/dimensions";
+@import "utils/layouts";
+@import "utils/elements";
+.main {
+    background: $white;
+}
+.desktop {
+    .main {
+        @include horizontal();
+        @include equalHeightColumn(1);
+        @include horizontalWrapper();
+        width: calc(100% - #{$leftnav-width});
+    }
+}

@@ -1,0 +1,37 @@
+@import "utils/colors";
+@import "utils/dimensions";
+@import "utils/layouts";
+@import "utils/elements";
+@import "utils/fonts";
+
+.column {
+    padding-left: 2em;
+    padding-right: 2em;
+    h2 {
+        font-size: 2rem;
+        margin: 1em 0;
+        font-family: $display;
+        @if $display == 'Poiret One' {
+            letter-spacing: .25em;
+        }
+    }
+}
+.desktop {
+    .column {
+        @include horizontal();
+        @include equalHeightColumn(2);
+        border-left: solid $lgray 1px;
+        width: 33%;
+        &:first-of-type {
+            border-left: none;
+        }
+    }
+}
+.mobile {
+    .column {
+        border-bottom: solid $lgray 1px;
+        &:last-of-type {
+            border-bottom: none;
+        }
+    }
+}

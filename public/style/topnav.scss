@@ -1,0 +1,20 @@
+@import "utils/colors";
+@import "utils/dimensions";
+@import "utils/layouts";
+@import "utils/elements";
+
+.topnav {
+    @include horizontalWrapper();
+
+    .nav {
+        @include horizontal();
+        width: 25%;
+        a {
+            padding: $lnp;
+            text-align: center;
+            font-family: $mainFont;
+            font-size: 1.4em;
+            display: inline-block;
+        }
+    }
+}

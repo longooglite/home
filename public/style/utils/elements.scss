@@ -1,0 +1,52 @@
+@import "dimensions";
+@import "fonts";
+@mixin hamburger($forecolor, $backcolor: transparent) {
+    background: linear-gradient(
+                    to bottom,
+                    #{$forecolor}, #{$forecolor} 20%,
+                    #{$backcolor} 20%, #{$backcolor} 40%,
+                    #{$forecolor} 40%, #{$forecolor} 60%,
+                    #{$backcolor} 60%, #{$backcolor} 80%,
+                    #{$forecolor} 80%, #{$forecolor} 100%
+    );
+}
+@mixin lightbox {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    z-index: 3;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, .5);
+}
+@mixin modal {
+    width: 90%;
+    background: $white;
+    max-height: $mmh;
+    overflow: auto;
+    padding: 2em;
+    h1, h2, h3 {
+        margin: .5em 0;
+    }
+}
+@mixin readability {
+    font-size: 1.3rem;
+    line-height: 1.5em;
+    letter-spacing: .05rem;
+    font-weight: 300;
+}
+@mixin stars($color: black, $bgcolor: $white) {
+    font-family: $glyphs;
+    @extend .fa-star;
+    &.filled {
+        color: $color;
+    }
+    &.empty {
+        color: $bgcolor;
+        @include text-outline($color)
+    }
+}

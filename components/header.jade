@@ -1,0 +1,6 @@
+h1= locals.title
+h2= locals.subtitle
+.topnav.mobile-only
+    each link in locals.navLinks
+        div.nav
+            a(href=link.href)= link.title

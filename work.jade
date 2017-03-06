@@ -1,0 +1,30 @@
+doctype html
+html
+    head
+        title= locals.title
+        link(href='./public/style/serve.css', rel='stylesheet')
+    body
+        .header
+            include components/header
+        .wrapper
+            .leftnav.desktop-only
+                include components/leftnav
+            .main
+                - var imgPath = './public/images'
+                .recent-work
+                    h2 Recent Work
+                    .mountain-pass.recent-employer
+                        h3 Mountain Pass Solutions
+                        p At Mountain Pass, I developed rich, asynchronous web apps like the workflow builder
+                            img(src='#{imgPath}/MPS/workflow_builder.png')
+                        p and the Roster data table
+                            img(src='#{imgPath}/MPS/roster_closed.png')
+                        p I also maintained and updated the existing design, from this
+                            img(src='#{imgPath}/MPS/old_design.png')
+                        p to this
+                            img(src='#{imgPath}/MPS/workflow.png')
+                    .dotsignal.recent-employer
+                    .dst.side-project
+        .footer
+            include components/footer
+    script(src='public/script/serve.js')

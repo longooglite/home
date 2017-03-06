@@ -1,0 +1,25 @@
+@mixin resetButtons {
+    input[type="submit"],
+    input[type="reset"],
+    input[type="button"],
+    button {
+        background: none;
+        border: 0;
+        color: inherit;
+        font: inherit;
+        line-height: normal;
+        overflow: visible;
+        padding: 0;
+        -webkit-appearance: button; /* for input */
+        -webkit-user-select: none; /* for button */
+        -moz-user-select: none;
+        -ms-user-select: none;
+        font-size: 1rem;
+    }
+}
+@mixin resetHeaders {
+    h1, h2, h3, h4, h5, h6 {
+        margin: 0;
+        text-transform: capitalize;
+    }
+}

@@ -1,0 +1,49 @@
+@import "utils/colors";
+table.sortable {
+    thead {
+        tr {
+            th {
+                cursor: pointer;
+                user-select: none;
+                &.dst-header-mouse-down {
+                    background: transparentize($lightgray, .9);
+                }
+                &.dst-header-hover,
+                :hover {
+                    color: black;
+                    background: transparentize($lightgray, .9);
+                }
+                &.dst-column-header-hover {
+                    color: black;
+                    background: transparentize($lightgray, .9);
+                }
+            }
+        }
+    }
+    tbody {
+        tr {
+            &:hover,
+            &.dst-row-hover {
+                color: black;
+                background: transparentize($lightgray, .9);
+                td {
+                    &.dst-column-cell-hover {
+                    }
+                }
+            }
+            td {
+                &.dst-cell-column-hover {
+                    color: black;
+                    background: transparentize($lightgray, .9);
+                }
+                &.dst-column-cell-hover {
+                    color: black;
+                    background: transparentize($lightgray, .9);
+                }
+                &.dst-cell-row-hover,
+                &:hover {
+                }
+            }
+        }
+    }
+}
