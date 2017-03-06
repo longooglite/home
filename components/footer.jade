@@ -1,7 +1,7 @@
 span= locals.footerText.required
-span.optional
     - var getRandomInt = function(ceiling, floor) { floor = floor ? floor : 0; return (Math.floor(Math.random() * ceiling) + floor); }
     - var useOptional = getRandomInt(2)
     if(useOptional)
-        - var useText = locals.footerText.optional[getRandomInt(locals.footerText.optional.length - 1)];
-        | | #{useText}
+        span.optional
+            - var useText = locals.footerText.optional[getRandomInt(locals.footerText.optional.length - 1)];
+            | | #{useText}
