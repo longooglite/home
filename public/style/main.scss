@@ -5,6 +5,7 @@
 .main {
     background: $white;
 }
+
 .desktop {
     .main {
         @include horizontal();
