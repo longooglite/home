@@ -1,15 +1,6 @@
 @import "utils/fonts";
 @import "utils/colors";
 .expertise {
-    padding: 20px;
-    h3 {
-        margin-bottom: 20px;
-        font-size: 34px;
-        color: $pg;
-        font-family: $display;
-        text-transform: uppercase;
-        letter-spacing: 4px;
-    }
     table {
         table-layout: fixed;
         width: 100%;
