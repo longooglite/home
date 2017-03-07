@@ -164,7 +164,7 @@ var addClass = function(element, cName) {
 module.exports.removeClass = removeClass;
 module.exports.addClass = addClass;
 module.exports.screenSize = function(mobile, smallDesktop, medDesktop) {
-    var mobileSize = mobile == undefined || !Number(mobile) ? 980 : mobile;
+    var mobileSize = mobile == undefined || !Number(mobile) ? 900 : mobile;
     var desktopSmall = smallDesktop == undefined ? 1000 : smallDesktop;
     var desktopMed = medDesktop == undefined ? 1500 : medDesktop;
     //sizes that correspond to what I need them too, mobile is probably what should be adjusted more often
@@ -173,8 +173,6 @@ module.exports.screenSize = function(mobile, smallDesktop, medDesktop) {
     var body = document.getElementsByTagName('body')[0];
     //used to do this by ID, but asking people to add IDs to their body is just dumb
     var width = body.offsetWidth;
-    console.log(width);
-    console.log(mobileSize);
     //offsetWidth gives a generally accurate view, certainly good enough for just CSS
     if(width <= mobileSize) {
         type = "mobile";
@@ -190,7 +188,6 @@ module.exports.screenSize = function(mobile, smallDesktop, medDesktop) {
             size = "large-screen";
         }
     }
-    alert(width);
     removeClass(body, 'mobile');
     removeClass(body, 'desktop');
     removeClass(body, 'small-screen');
