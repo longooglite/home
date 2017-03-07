@@ -164,7 +164,7 @@ var addClass = function(element, cName) {
 module.exports.removeClass = removeClass;
 module.exports.addClass = addClass;
 module.exports.screenSize = function(mobile, smallDesktop, medDesktop) {
-    var mobileSize = mobile == undefined || !Number(mobile) ? 600 : mobile;
+    var mobileSize = mobile == undefined || !Number(mobile) ? 980 : mobile;
     var desktopSmall = smallDesktop == undefined ? 1000 : smallDesktop;
     var desktopMed = medDesktop == undefined ? 1500 : medDesktop;
     //sizes that correspond to what I need them too, mobile is probably what should be adjusted more often
