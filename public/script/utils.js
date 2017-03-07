@@ -190,6 +190,7 @@ module.exports.screenSize = function(mobile, smallDesktop, medDesktop) {
             size = "large-screen";
         }
     }
+    alert(width);
     removeClass(body, 'mobile');
     removeClass(body, 'desktop');
     removeClass(body, 'small-screen');
