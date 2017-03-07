@@ -13,8 +13,8 @@
 }
 .mobile {
     .wrapper {
-        top: calc(#{$hh} + #{$mnh});
-        min-height: calc(100% - #{$hh + $fh + $mnh});
+        top: 142px;
+        min-height: calc(100% - #{$hmh + $fh});
     }
 }
 .mini .wrapper {

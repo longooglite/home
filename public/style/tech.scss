@@ -46,3 +46,24 @@
         }
     }
 }
+.expertise-mobile {
+    font-size: 20px;
+    h4 {
+        margin: 10px 0;
+    }
+    .associated {
+        padding-left: 20px;
+        span {
+            &:first-of-type {
+                margin-left: 5px;
+            }
+            &:after {
+                content: ', ';
+                margin-right: 5px;
+            }
+            &:last-of-type:after {
+                content: ' ';
+            }
+        }
+    }
+}

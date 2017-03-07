@@ -28,11 +28,6 @@
         color: $dark-font-gray;
     }
 }
-.mobile {
-    .header {
-        height: calc(#{$hh} + #{$mnh});
-    }
-}
 .header.mini {
     height: $hmh;
     h1 {
@@ -42,5 +37,21 @@
     h2 {
         font-size: 1.75em;
         display: inline-block;
+    }
+}
+body.mobile {
+    .header {
+        height: $hmh;
+        h1 {
+            font-size: 4em;
+            display: block;
+        }
+        h2 {
+            font-size: 1.75em;
+            display: block;
+            position: relative;
+            top: -5px;
+            background: white;
+        }
     }
 }

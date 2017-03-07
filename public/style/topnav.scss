@@ -5,14 +5,17 @@
 
 .topnav {
     @include horizontalWrapper();
-
+    background: white;
+    top: -5px;
+    position: relative;
+    font-family: $header;
     .nav {
         @include horizontal();
         width: 25%;
         a {
             padding: $lnp;
+            text-transform: uppercase;
             text-align: center;
-            font-family: $mainFont;
             font-size: 1.4em;
             display: inline-block;
         }

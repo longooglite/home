@@ -10,7 +10,7 @@ document.addEventListener('scroll', function() {
         utils.removeClass(header, 'mini');
     }
 });
-document.addEventListener('resize', utils.screenSize);
+window.addEventListener('resize', utils.screenSize);
 var expTable = document.getElementsByClassName('sortable')[0];
 if(expTable) {
     expTable = sortAble.sortableTable(expTable);
@@ -87,4 +87,28 @@ if(expTable) {
             utils.removeClass(expTable.headers[celldex], 'dst-column-header-hover');
         }
     });
+}
+document.getElementById('lightbox').addEventListener('click', function() {
+    utils.addClass(this, 'lightbox-hidden');
+    var body = document.getElementsByTagName('body')[0];
+    utils.removeClass(body, 'lightbox-up');
+});
+var pics = document.getElementsByTagName('img');
+var lightboxImage = function() {
+    var src = this.src;
+    var text = this.parentNode.textContent;
+    var lb = document.getElementById('lightbox');
+    var lbImg = document.getElementById('lightbox-image');
+    var lbText = document.getElementById('lightbox-text-content');
+    lbImg.src = src;
+    lbText.innerText = text;
+    utils.removeClass(lb, 'lightbox-hidden');
+    var body = document.getElementsByTagName('body')[0];
+    utils.addClass(body, 'lightbox-up');
+};
+if(pics) {
+    pics = [].slice.call(pics);
+    pics.forEach(function(e) {
+        e.addEventListener('click', lightboxImage)
+    })
 }

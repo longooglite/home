@@ -11,5 +11,7 @@
         @include equalHeightColumn(1);
         @include horizontalWrapper();
         width: calc(100% - #{$leftnav-width});
+        padding-top: 10px;
+        padding-left: 10px;
     }
 }

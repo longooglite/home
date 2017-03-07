@@ -147,22 +147,24 @@ module.exports.setData = function(element, attr, data) {
     if(element.dataset) element.dataset[attr] = data;
     else element.setAttribute('data-' + attr, data);
 };
-module.exports.removeClass = function(element, cName){
+var removeClass = function(element, cName){
     if(element.className.indexOf(cName) >= 0) {
         element.className = String(element.className.replaceAll(cName, '')).stripSpaces();
         return element;
     }
     return element;
 };
-module.exports.addClass = function(element, cName) {
+var addClass = function(element, cName) {
     if(element.className.indexOf(cName) < 0) {
         element.className = String(element.className + ' ' + cName).stripSpaces();
         return element;
     }
     return element;
 };
-module.exports.screenSize = function(mobile, smallDesktop, medDesktop){
-    var mobileSize = mobile == undefined ? 980 : mobile;
+module.exports.removeClass = removeClass;
+module.exports.addClass = addClass;
+module.exports.screenSize = function(mobile, smallDesktop, medDesktop) {
+    var mobileSize = mobile == undefined || !Number(mobile) ? 600 : mobile;
     var desktopSmall = smallDesktop == undefined ? 1000 : smallDesktop;
     var desktopMed = medDesktop == undefined ? 1500 : medDesktop;
     //sizes that correspond to what I need them too, mobile is probably what should be adjusted more often
@@ -171,18 +173,29 @@ module.exports.screenSize = function(mobile, smallDesktop, medDesktop){
     var body = document.getElementsByTagName('body')[0];
     //used to do this by ID, but asking people to add IDs to their body is just dumb
     var width = body.offsetWidth;
+    console.log(width);
+    console.log(mobileSize);
     //offsetWidth gives a generally accurate view, certainly good enough for just CSS
-    if(width <= mobileSize) type = "mobile";
-    else
-    {
+    if(width <= mobileSize) {
+        type = "mobile";
+    } else {
         type = "desktop";
-        if(width < desktopMed)
-        {
-            if(width < desktopSmall) size = "small-screen";
-            else size = "med-screen";
+        if(width < desktopMed) {
+            if(width < desktopSmall) {
+                size = "small-screen";
+            } else {
+                size = "med-screen";
+            }
+        } else {
+            size = "large-screen";
         }
-        else size = "large-screen";
     }
-    body.className = body.className + " " + type + " " + size;
+    removeClass(body, 'mobile');
+    removeClass(body, 'desktop');
+    removeClass(body, 'small-screen');
+    removeClass(body, 'med-screen');
+    removeClass(body, 'large-screen');
+    addClass(body, type);
+    addClass(body, size);
     //preserves already set classnames!
 };
