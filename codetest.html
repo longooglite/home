@@ -53,8 +53,9 @@
             display: inline-block;
             vertical-align: top;
             font-size: 1rem;
-            top: -4px;
+            top: -4px; /*Slight correction for the line height*/
             position: relative;
+            max-width: calc(100% - 100px); /*Book images are taller than wide, since their height is set at 100px, prevents books from ever shoving the text down a line*/
         }
 
         .errorFlasher {
