@@ -9,7 +9,7 @@ module.exports.jadevars = {
             'href': '//reddit.com/u/k_longuski'
         }, {
             'title': 'code test',
-            'href': './work.html'
+            'href': './codetest.html'
         }, {
             'title': 'resume',
             'href': '//drive.google.com/file/d/0B0bcseZsc82KZ0Vrb0JvNFAzMms/view?usp=sharing'
