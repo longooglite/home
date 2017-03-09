@@ -12,35 +12,39 @@
         }
         ul {
             font-size: 0;
+            padding: 0;
+            height: calc(100vh - 250px);
+            overflow: auto;
         }
         li {
             list-style-type: none;
-            display: inline-block;
-            width: calc(50% - 70px);
+            display: block;
+            width: calc(100% - 70px);
             margin: 0 35px 20px 35px;
             padding: 5px;
             vertical-align: top;
             font-size: 0;
+            border-bottom: solid #dddddd 1px;
         }
 
         li span,
         li a {
             display: block;
-            margin: 10px;
+            margin: 0 10px 10px 10px;
             line-height: 1.4em;
         }
 
         li img {
-            display: inline-block;
-            width: 50%;
+            height: 100px;
         }
 
         li .info-wrapper {
             padding-left: 10px;
             display: inline-block;
             vertical-align: top;
-            width: 50%;
             font-size: 1rem;
+            top: -4px;
+            position: relative;
         }
 
         .errorFlasher {
