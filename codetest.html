@@ -1,0 +1,246 @@
+<html>
+<head>
+    <title>Google Books Search Engine</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            font-family: sans-serif;
+        }
+        ul {
+            font-size: 0;
+        }
+        li {
+            list-style-type: none;
+            display: inline-block;
+            width: calc(50% - 70px);
+            margin: 0 35px 20px 35px;
+            padding: 5px;
+            vertical-align: top;
+            font-size: 1rem;
+        }
+
+        li span,
+        li a {
+            display: block;
+            margin: 10px;
+            line-height: 1.4em;
+        }
+
+        li img {
+            display: inline-block;
+        }
+
+        li .info-wrapper {
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        .errorFlasher {
+            padding: 5px 25px;
+            background: rgba(255, 0 , 0, .2);
+        }
+
+        #searchArea {
+            padding: 25px;
+        }
+
+        #searchBar {
+            padding: 10px;
+            width: calc(100% - 80px);
+            font-size: 16px;
+        }
+
+        .main-wrapper {
+            width: 60%;
+            margin: 0 auto;
+            padding-top: 20px;
+        }
+
+        #searchBtn {
+            padding: 10px;
+            background: none;
+            border: solid #dddddd 1px;
+            font-size: 16px;
+            display: inline-block;
+            height: 42px;
+        }
+    </style>
+<body>
+<div class="errorFlasher" style="display: none;"></div>
+<div class="main-wrapper">
+    <h1>Book Searcher</h1>
+    <h2>Kirk Longuski</h2>
+    <div id="searchArea">
+        <input id="searchBar" placeholder="Input search term here"/>
+        <button id="searchBtn">Search</button>
+    </div>
+    <div id="resultsArea">
+        <ul id="results">
+        </ul>
+    </div>
+</div>
+<script type="text/javascript">
+    var searchUrl = 'https://www.googleapis.com/books/v1/volumes';
+    var booksMaster = {};
+    /**
+     * 0) Remove the div with id="instructions".  You will be modifying this file.
+     *
+     * 1) Research the Google Books Volume API to determine
+     *    how to search for books given a query.
+     *	  https://developers.google.com/books/docs/v1/reference/volumes
+     *
+     * 2) You may use jQuery.
+     *
+     * 3) Given the following HTML, you are tasked with building a basic search engine
+     *    for Google Books.  There should be a search bar to input a query that will be
+     *	  be passed as an argument to the Google Books API.  The results should be rendered
+     *	  in the results area.  You must include at least (if available for the record):
+     *		+ Cover image
+     *		+ Title
+     *		+ Subtitle
+     *		+ Authors
+     *
+     *	  Additionally, each results should somehow provide a link to item's Google Books page.
+     *    hint: Look at a Google Books entry on Google Books, and see which parameter might help you.
+     *
+     * 4) Results should be styled logically, however, this isn't a design position, so don't feel
+     *	  like you have to impress us, although it should be presentable.
+     *
+     * 5) Each subsequent query should append its results to the results area.
+     *    There must be no duplicates (by Google Books id).
+     *
+     * 6) Note: While you must use the three function stubs provided below,
+     *    This will require you to write some code outside of them.
+     *
+     * 7) You should save your final product as googleBooks_codeTest_<your last name>.html
+     */
+
+    /**
+     * Builds error message from HTTP error
+     * @param errorData {object} - error data from Ajax
+     */
+    function buildErrorMessageFromHTTP(errorData) {
+        errorData = $.parseJSON(errorData.responseText);
+        var message = 'We\'re sorry, there was an error with your request - ' + errorData.error.message;
+        showError(message);
+    }
+
+    /**
+     * Renders an error message
+     * @param msg {string} - error message to render
+     */
+    function showError(msg) {
+        var html = '<p class="error">' + msg + '</p>';
+        $(".errorFlasher").html(html).fadeIn(600, function() {
+            var $this = $(this);
+            setTimeout(function() {
+                $this.fadeOut(600, function() {
+                    $this.html('');
+                });
+            }, 1500);
+        });
+    }
+
+    /**
+     * Searches for books and returns a JSON list
+     * @param term {string} - search term
+     * @param callback {function} - do something with results
+     */
+    function searchForBooks(term, callback) {
+        $.ajax({
+            'method': 'GET',
+            'url': searchUrl,
+            'success': callback,
+            'data': {
+                'q': term
+            },
+            'error': buildErrorMessageFromHTTP
+        });
+    }
+
+    /**
+     * Processes books, checks for duplicates, builds jQuery object and html
+     * Generates HTML and sets #results's contents to it
+     * @param data {object} - search results
+     */
+    function render(data) {
+        if($.isArray(data.items) && data.items.length) {
+            data.items.forEach(function (e) {
+                if(!booksMaster[e.id]) {
+                    var newBook = {};
+                    //Normally I'd use a templating engine for this,
+                    //Either one in the framework I'm using, or failing that, Mustache
+                    //But I figured that "knowing Mustache exists" wasn't a huge part of the test
+                    newBook.$book = $('<li />', {
+                        'class': 'book'
+                    });
+                    newBook.$book
+                            .append($('<img />', {
+                                'class': 'book-thumbnail',
+                                'src': e.volumeInfo.imageLinks ? e.volumeInfo.imageLinks.smallThumbnail : 'http://placehold.it/128x183?text=Placeholder!'
+                            }));
+                    newBook.$book.append('<div class="info-wrapper"></div>');
+                    newBook.$book.find('.info-wrapper')
+                            .append($('<span class="book-title">'+ e.volumeInfo.title + '</span>'))
+                            .append(e.volumeInfo.authors ? e.volumeInfo.authors.map(function(se, i) {
+                                var byString = i === 0 ? 'By: ' : 'And: ';
+                                return $('<span class="book-author">'+ byString + se + '</span>')
+                            }) : '')
+                            .append($('<a class="book-link" target="_blank" href="https://books.google.com/books?id=' + e.id + '">View Book</a>'));
+                    if(e.volumeInfo.subtitle) {
+                        newBook.$book.find('.book-title').after($('<span class="book-subtitle">'+ e.volumeInfo.subtitle +'</span>'))
+                    }
+                    booksMaster[e.id] = newBook;
+                }
+            });
+            showAllBooks();
+        } else {
+            showError('Sorry! No results for your search');
+            showAllBooks();
+        }
+    }
+
+    /**
+     * Renders the generated content #results's contents to it
+     */
+    function showAllBooks() {
+        var $res = $('#results');
+        $res.html('');
+        for(var bookID in booksMaster) {
+            if(booksMaster.hasOwnProperty(bookID)) {
+                $res.append(booksMaster[bookID].$book);
+            }
+        }
+    }
+    var $doc = $(document);
+    var initSearch = function() {
+        var $input = $('#searchBar');
+        if($input.val()) {
+            if($input.val().toLowerCase() === 'something' || $input.val().toLowerCase() === 'something though') {
+                console.log('Very clever');
+            }
+            $('#results').html('<li class="loading">Loading....</li>');
+            searchForBooks($input.val(), function (data) {
+                render(data);
+            });
+        } else {
+            showError('Almost got me! Please search for something though.');
+        }
+    };
+    $doc.ready(function () {
+        /*The space between the function keyword and the open parens makes me uncomfortable, but I can adjust*/
+        $doc
+                .on('click', '#searchBtn', initSearch)
+                .on('keypress', '#searchBar', function(e) {
+                    if(e.which === 13) {
+                        initSearch();
+                    }
+                });
+    });
+</script>
+</body>
+</html>
