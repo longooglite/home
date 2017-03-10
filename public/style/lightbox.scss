@@ -23,3 +23,12 @@ body.lightbox-up {
         margin: 0 auto;
     }
 }
+.mobile {
+    .lightbox {
+        overflow: auto;
+        img {
+            width: auto;
+            height: 90vh;
+        }
+    }
+}

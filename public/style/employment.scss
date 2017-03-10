@@ -19,8 +19,11 @@
 .mobile {
     .recent-employer {
         p {
-            font-size: $rem;
-            width: 90%;
+            width: 100%;
+            img {
+                height: auto;
+                width: 100%;
+            }
         }
     }
 }
