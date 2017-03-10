@@ -1,0 +1,234 @@
+
+<html>
+  <head>
+    <title>Kirk Longuski</title>
+    <link href="public/style/serve.css" rel="stylesheet"/>
+  </head>
+  <body>
+    <header class="header">
+      <h1>Kirk Longuski</h1>
+      <h2>Ann Arbor Web Developer</h2>
+      <nav class="topnav mobile-only">
+        <div class="nav"><a href="./">home</a></div>
+        <div class="nav"><a href="//reddit.com/u/k_longuski">reddit</a></div>
+        <div class="nav"><a href="./site-code.html">site build and code snippets</a></div>
+        <div class="nav"><a href="//drive.google.com/file/d/0B0bcseZsc82KZ0Vrb0JvNFAzMms/view?usp=sharing">resume</a></div>
+        <div class="nav"><a href="./work.html">work</a></div>
+      </nav>
+    </header>
+    <div class="wrapper">
+      <div class="leftnav desktop-only">
+        <nav class="nav"><a href="./">home</a></nav>
+        <nav class="nav"><a href="//reddit.com/u/k_longuski">reddit</a></nav>
+        <nav class="nav"><a href="./site-code.html">site build and code snippets</a></nav>
+        <nav class="nav"><a href="//drive.google.com/file/d/0B0bcseZsc82KZ0Vrb0JvNFAzMms/view?usp=sharing">resume</a></nav>
+        <nav class="nav"><a href="./work.html">work</a></nav>
+      </div>
+      <div class="main">
+        <div class="site-build">
+          <div class="html">
+            <h3>HTML structure</h3>
+            <p>
+              The pages are written in Jade, or Pug as it's called now and compiled with a gulp task.
+              This is just for convenience. I'm perfectly comfortable writing raw HTML, but I try not to if I can help it.
+              The footer, header, and navigation are spun off into components, and since
+              the mobile and desktop navigation share content but have separate structure, nav links are
+              stored as JSON objects
+            </p><code>
+              <pre>{'navLinks': [{
+            'title': 'home',
+            'href':'./'
+        }, {
+            'title': 'reddit',
+            'href': '//reddit.com/u/k_longuski'
+        }, {
+            'title': 'site build',
+            'href': './site-code.html'
+        }, {
+            'title': 'resume',
+            'href': '//drive.google.com/file/d/0B0bcseZsc82KZ0Vrb0JvNFAzMms/view?usp=sharing'
+        }, {
+            'title': 'work',
+            'href': './work.html'
+        }
+    ]}</pre></code>
+            <p>The footer text is also stored and sometimes randomized text is displayed next to the copyright notice.</p><code>
+              <pre>'footerText': {
+    'required': 'Copyright © Kirk Longuski ' + (new Date().getFullYear()),
+    'optional': [
+        "I was voted Most Likely to Take Over the World in high school",
+        "Did you know that this legal stuff doesn't really do anything? I own the copyright whether I put it here or not.",
+        "#resist"
+    ]
+}</pre></code>
+            <p>footerText.required is always shown, and the footer component picks a Javascript pseudorandom integer to determine whether to show one or not</p><code>
+              <pre>span= locals.footerText.required
+    - var getRandomInt = function(ceiling, floor) { floor = floor ? floor : 0; return (Math.floor(Math.random() * ceiling) + floor); }
+    - var useOptional = getRandomInt(2)
+    if(useOptional)
+        span.optional
+            - var useText = locals.footerText.optional[getRandomInt(locals.footerText.optional.length - 1)];
+            | | # { useText }</pre></code>
+            <p>The header and footer are semantic tags, the main wrapper is just a div though.</p>
+          </div>
+          <div class="css">
+            <h3>CSS Styles</h3>
+            <p>The css is written as Sass, again for convenience. The nav and content areas are handled as equal-height columns described in&nbsp;<a href="https://css-tricks.com/fluid-width-equal-height-columns/">this article.</a></p>
+            <p>
+              I deviated from the suggestion in a couple of ways. I chose not to use floats as I find them unpredictable when used for layout.
+              You end up with things like the footer covering the bottom line of content or things like that. Instead, I chose to
+              set the columns to display: inline-block and the wrapper to have a font size of 0. They can then be set to complementary widths
+              so they're nice and snug next to each other.
+            </p><code>
+              <pre>@mixin equalHeightColumn($nth, $real-padding: 0) {
+    $pb: (9999 - (20 * ($nth - 1))) + $real-padding;
+    $mb: -9999 + (20 * ($nth - 1));
+    padding-bottom: # { $pb } px;
+    margin: 0 0 # { $mb } px 0;
+}
+@mixin horizontal {
+    vertical-align: top;
+    display: inline-block;
+}
+@mixin horizontalWrapper {
+    font-size: 0;
+    white-space: nowrap;
+    overflow-x: auto;
+    > * {
+        white-space: normal;
+        font-size: 1rem;
+    }
+}</pre></code>
+            <p>
+              Another cute trick is using the nth parameter so that these equal-height columns can be nested.
+              Storing all of these as mixins in my scss/utils directory keeps them easy to reach for most any project.
+              The shrinking header is accomplished by adding a class of .mini on scroll past a certain point in javascript.
+              I go back and forth about having the whole page scroll and keep the header and footer in place with position: fixed,
+              and having only the content portion scroll. Semantically, the page scroll makes sense, although aesthetically I prefer section scroll.
+            </p>
+          </div>
+          <div class="javascript">
+            <h3>JavaScript</h3>
+            <p>
+              This site is pretty light on JavaScript. There's the scroll handler that adds the necessary
+              classes for the shrinking header
+            </p><code>
+              <pre>document.addEventListener('scroll', function() {
+    var header = document.getElementsByClassName('header')[0];
+    if(window.scrollY > 100) {
+        utils.addClass(header, 'mini');
+    } else {
+        utils.removeClass(header, 'mini');
+    }
+});</pre></code>
+            <p>
+              You'll notice the utils object, which comes from my personal utils module. Little things
+              that just make life easier without a jQuery dependency. There's also the screenSize handler
+              which is called at load and on resize, it determines whether to use the mobile or desktop styles.
+              I must have written that three or four years ago now
+            </p><code>
+              <pre>module.exports.screenSize = function(mobile, smallDesktop, medDesktop) {
+    var mobileSize = mobile == undefined ? 900 : mobile;
+    var desktopSmall = smallDesktop == undefined ? 1000 : smallDesktop;
+    var desktopMed = medDesktop == undefined ? 1500 : medDesktop;
+    //TODO:Add breakpoints for common mobile devices, specify type to device
+    var size = "", type = "";
+    var body = document.getElementsByTagName('body')[0];
+    var width = body.offsetWidth;
+    //offsetWidth gives a generally accurate view, certainly good enough for just CSS
+    if(width <= mobileSize) {
+        type = "mobile";
+    } else {
+        type = "desktop";
+        if(width < desktopMed) {
+            if(width < desktopSmall) {
+                size = "small-screen";
+            } else {
+                size = "med-screen";
+            }
+        } else {
+            size = "large-screen";
+        }
+    }
+    return {'size': size, 'type': type};
+};</pre></code>
+            <p>
+              Some quick notes, there's a version out there that appends the class to the body, but not in the modularized version.
+              The mobile comparison uses == because 0, null, and undefined should all fail. If 0 and null were acceptable, I'd use ===
+            </p>
+            <p>
+              The most JavaScript intensive portion is the expertise table, what with the sorting
+              and the hover states. In fact, I spun the table sorting off into a separate project, which you can see at&nbsp;<a href="https://github.com/longooglite/Dead-Simple-Tables">Dead Simple Tables</a>
+            </p>
+          </div>
+          <div class="build">
+            <h3>Build Process</h3>
+            <p>The build is based on gulp tasks.</p>
+            <h4>Default</h4>
+            <p>Default just pulls the other tasks in sequence</p><code>
+              <pre>gulp.task('default', ['browser', 'jade', 'postsass']);</pre></code>
+            <h4>Browser</h4>
+            <p>Browser runs browserify and creates serve.js</p><code>
+              <pre>gulp.task('browser', function(){
+    var buildscript = function() {
+        var bundler = browserify({
+            entries: './public/script/main.js',
+            debug: true
+        });
+        var handleErrors = function(error){
+            console.log(error);
+        };
+        var stream = bundler.bundle();
+        return stream.on('error', handleErrors)
+            .pipe(source('serve.js'))
+            .pipe(gulp.dest('./public/script'));
+    };
+    return buildscript();
+});</pre></code>
+            <h4>PostSass</h4>
+            <p>
+              PostSass is the most involved task, it compiles and concatenates all of the scss
+              files, and then runs the resulting css file through a few PostCSS processors for additional functionality
+              the big one was flexibility, which I needed for IE support, and since I was doing that one anyone I decided why not do the rest
+              Autoprefixer helps with browser coverage, flexibility adds IE support for flex box via custom CSS properties,
+              fontmagic retrieves the fonts you're currently enjoying and is a really impressive piece of software
+              which you can findnbsp;<a href="https://github.com/jonathantneal/postcss-font-magician">here.</a>and finally CSSNano squishes it all together.
+            </p><code>
+              <pre>gulp.task('postsass', function(){
+    var source = "./public/style/*.scss";
+    var output = "./public/style/";
+    var postprocess = [
+        autoprefixer({
+            'browsers': 'last 4 versions'
+        }),
+        flexibility(),
+        fontmagic(),
+        cssnano()
+    ];
+    return gulp.src(source)
+        .pipe(sass())
+        .pipe(postcss(postprocess))
+        .pipe(concat('serve.css'))
+        .pipe(gulp.dest(output));
+});</pre></code>
+            <h4>Jade</h4>
+            <p>Finally, there's the Jade task, which just processes all of the jade files as needed, and passes them the local variables</p><code>
+              <pre>gulp.task('jade', function(){
+    var source = "./*.jade";
+    var output = "./";
+    return gulp.src(source)
+        .pipe(jade({
+            'locals': jadevars,
+            'pretty': true
+        }))
+        .pipe(gulp.dest(output));
+});
+</pre></code>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="footer"><span>Copyright © Kirk Longuski 2017<span class="optional">| Did you know that this legal stuff doesn't really do anything? I own the copyright whether I put it here or not.</span></span></footer>
+    <script src="public/script/serve.js"></script>
+  </body>
+</html>

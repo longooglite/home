@@ -4,6 +4,10 @@ p {
     font-weight: 300;
 }
 
+.mobile p {
+    font-size: 36px;
+}
+
 pre {
     width: 100%;
     overflow: auto;
@@ -13,4 +17,8 @@ h4  {
     font-size: 22px;
     font-weight: 300;
     text-decoration: underline;
+}
+
+.mobile h4  {
+    font-size: 44px;
 }
