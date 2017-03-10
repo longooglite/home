@@ -9,9 +9,10 @@
     top: -5px;
     position: relative;
     font-family: $header;
+    overflow: visible !important;
     .nav {
         @include horizontal();
-        width: auto;
+        width: 33%;
         a {
             padding: $lnp;
             text-transform: uppercase;
@@ -19,5 +20,19 @@
             font-size: 3.5em;
             display: inline-block;
         }
+    }
+    .more-menu {
+        display: none;
+        position: absolute;
+        background: white;
+        .nav {
+            display: block;
+            a {
+                text-align: left;
+            }
+        }
+    }
+    &.show-more .more-menu {
+        display: block;
     }
 }

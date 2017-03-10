@@ -1,6 +1,14 @@
 h1= locals.title
 h2= locals.subtitle
 nav.topnav.mobile-only
-    each link in locals.navLinks
-        div.nav
-            a(href=link.href)= link.title
+    .nav
+        a(href=locals.navLinks[0].href)= locals.navLinks[0].title
+    .nav
+        a(href=locals.navLinks[1].href)= locals.navLinks[1].title
+    .nav
+        a.more-link(href='#0') more...
+    .more-menu
+        each link, index in locals.navLinks
+            if index > 1
+                div.nav.more-hidden
+                    a(href=link.href)= link.title
