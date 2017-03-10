@@ -3,7 +3,7 @@ html
         title= locals.title
         link(href='public/style/serve.css', rel='stylesheet')
     body
-        .header
+        header.header
             include components/header
         .wrapper
             .leftnav.desktop-only
@@ -46,6 +46,6 @@ html
                                     span.company Dice Security
                                     span.type Developer
                                     span.years 2009-2011
-        .footer
+        footer.footer
             include components/footer
     script(src="./public/script/serve.js")

@@ -4,7 +4,7 @@ html
         link(href='public/style/serve.css', rel='stylesheet')
     - var iterateTimes =  function(number){ var arr = []; for(var it = 1; it < number; it++){ arr.push(it)}; return arr; };
     body
-        .header
+        header.header
             include components/header
         .wrapper
             .leftnav.desktop-only
@@ -41,6 +41,6 @@ html
                                 .associated Also:
                                     each ass in tech.associated
                                         span= ass
-        .footer
+        footer.footer
             include components/footer
     script(src='public/script/serve.js')

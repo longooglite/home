@@ -11,7 +11,7 @@
     font-family: $header;
     .nav {
         @include horizontal();
-        width: 25%;
+        width: auto;
         a {
             padding: $lnp;
             text-transform: uppercase;

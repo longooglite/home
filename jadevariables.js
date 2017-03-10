@@ -8,8 +8,8 @@ module.exports.jadevars = {
             'title': 'reddit',
             'href': '//reddit.com/u/k_longuski'
         }, {
-            'title': 'code test',
-            'href': './codetest.html'
+            'title': 'site build and code snippets',
+            'href': './site-code.html'
         }, {
             'title': 'resume',
             'href': '//drive.google.com/file/d/0B0bcseZsc82KZ0Vrb0JvNFAzMms/view?usp=sharing'

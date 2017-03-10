@@ -4,7 +4,7 @@ html
         title= locals.title
         link(href='./public/style/serve.css', rel='stylesheet')
     body
-        .header
+        header.header
             include components/header
         .wrapper
             .leftnav.desktop-only
@@ -25,7 +25,7 @@ html
                             img(src='#{imgPath}/MPS/workflow.png')
                     .dotsignal.recent-employer
                     .dst.side-project
-        .footer
+        footer.footer
             include components/footer
         include components/lightbox
     script(src='public/script/serve.js')
