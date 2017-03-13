@@ -117,6 +117,9 @@ var lightboxImage = function() {
     var lbImg = document.getElementById('lightbox-image');
     var lbText = document.getElementById('lightbox-text-content');
     lbImg.src = src;
+    if(this.className.indexOf('portrait') >= 0) {
+        utils.addClass(lbImg, 'portrait');
+    }
     lbText.innerText = text;
     utils.removeClass(lb, 'lightbox-hidden');
     var body = document.getElementsByTagName('body')[0];

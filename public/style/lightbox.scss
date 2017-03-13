@@ -22,11 +22,16 @@ body.lightbox-up {
         display: block;
         margin: 0 auto;
     }
+    img.portrait {
+        width: auto;
+        height: 85vh;
+    }
 }
 .mobile {
     .lightbox {
         overflow: auto;
-        img {
+        img,
+        img.portrait {
             width: auto;
             height: 90vh;
         }
