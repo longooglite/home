@@ -11,6 +11,9 @@ module.exports.jadevars = {
             'title': 'reddit',
             'href': '//reddit.com/u/k_longuski'
         }, {
+            'title': 'Dead Simple Tables [github]',
+            'href': 'https://github.com/longooglite/Dead-Simple-Tables'
+        }, {
             'title': 'site build and code snippets',
             'href': './site-code.html'
         }, {
