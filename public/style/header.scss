@@ -12,7 +12,7 @@
     font-family: $header;
     border-bottom: solid $pg 1px;
     white-space: nowrap;
-    font-size: 44.1px;
+    font-size: 2.5 * $rem;
 }
 .header__title {
     color: $pg;
@@ -30,7 +30,7 @@
 }
 .header--mini {
     height: $hmh;
-    font-size: 28px;
+    font-size: 1.5 * $rem;
     .header__title {
         display: inline-block;
     }
@@ -41,7 +41,7 @@
 
 body.mobile .header {
     height: auto;
-    font-size: 56px;
+    font-size: 3 * $rem;
     .header__title {
         display: block;
         text-align: center;

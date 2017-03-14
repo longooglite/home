@@ -24,7 +24,7 @@
     text-transform: uppercase;
     font-family: $display;
     font-weight: bold;
-    font-size: 1.42rem;
+    font-size: $rem;
     letter-spacing: 1px;
     cursor: pointer;
     @if $display == 'Poiret One' {
