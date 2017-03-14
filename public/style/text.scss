@@ -2,7 +2,7 @@
 @import 'utils/colors';
 
 p {
-    font-size: 18px;
+    font-size: $rem;
     letter-spacing: 2px;
     font-weight: 300;
 }
@@ -12,6 +12,7 @@ p {
 }
 
 pre {
+    font-size: $rem;
     width: 100%;
     overflow: auto;
 }

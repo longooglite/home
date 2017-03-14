@@ -9,7 +9,7 @@ $display-size: 6em;
 } @else {
     $display-size: 6.3em;
 }
-$rem: 14px;
+$rem: 18px;
 @mixin text-outline($color: black) {
     text-shadow: 1px 1px 0 $color, 1px -1px 0 $color, -1px 1px 0 $color, -1px -1px 0 $color;
 }
