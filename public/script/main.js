@@ -1,5 +1,4 @@
 var utils = require('./utils.js');
-var sortAble = require('./sortableTables.js');
 utils.autoUtils();
 utils.screenSize();
 document.addEventListener('scroll', function() {
@@ -25,7 +24,7 @@ showMoreTrigger.addEventListener('click', function(e) {
 window.addEventListener('resize', utils.screenSize);
 var expTable = document.getElementsByClassName('sortable')[0];
 if(expTable) {
-    expTable = sortAble.sortableTable(expTable);
+    expTable = dst(expTable);
     expTable.table.addEventListener('mousedown', function(e) {
         if(e.target.tagName === 'TH') {
             utils.addClass(e.target, 'dst-header-mouse-down');
