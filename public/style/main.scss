@@ -12,7 +12,7 @@
         @include equalHeightColumn(1);
         @include horizontalWrapper();
         width: calc(100% - #{$leftnav-width});
-        padding-top: 50px;
-        padding-left: 50px;
+        padding-top: 36px;
+        padding-left: 36px;
     }
 }
