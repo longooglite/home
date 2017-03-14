@@ -1,13 +1,13 @@
 @import "utils/fonts";
+@import "utils/layouts";
 .image-pair__list {
-    font-size: 0;
+    @include horizontalWrapper;
+    white-space: normal;
 }
 .image-pair__container {
+    @include horizontal;
     width: 50%;
     padding: 5px;
-    display: inline-block;
-    vertical-align: top;
-    font-size: $rem;
 }
 .image-pair__text {
     display: block;
