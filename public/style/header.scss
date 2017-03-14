@@ -2,7 +2,6 @@
 @import "utils/dimensions";
 @import "utils/layouts";
 @import "utils/fonts";
-
 .header {
     @include fixedCenter();
     top: 0;
@@ -13,45 +12,44 @@
     font-family: $header;
     border-bottom: solid $pg 1px;
     white-space: nowrap;
-    h1 {
-        color: $pg;
-        @if $display == 'Poiret One' {
-            letter-spacing: .1em;
-        }
-        text-transform: uppercase;
-        font-size: $display-size;
-        font-weight: 300;
-    }
-    h2 {
-        font-size: 2.5em;
-        font-weight: 300;
-        color: $dark-font-gray;
-    }
+    font-size: 44.1px;
 }
-.header.mini {
+.header__title {
+    color: $pg;
+    @if $display == 'Poiret One' {
+        letter-spacing: .1em;
+    }
+    text-transform: uppercase;
+    font-size: 2em;
+    font-weight: 300;
+}
+.header__subtitle {
+    font-size: 1em;
+    font-weight: 300;
+    color: $dark-font-gray;
+}
+.header--mini {
     height: $hmh;
-    h1 {
-        font-size: 4em;
+    font-size: 28px;
+    .header__title {
+        font-size: 2em;
         display: inline-block;
     }
-    h2 {
-        font-size: 1.75em;
+    .header__subtitle {
+        font-size: 1em;
         display: inline-block;
     }
 }
-body.mobile {
-    .header {
-        height: auto;
-        h1 {
-            font-size: 8em;
-            display: block;
-        }
-        h2 {
-            font-size: 3.5em;
-            display: block;
-            position: relative;
-            top: -5px;
-            background: white;
-        }
+
+body.mobile .header {
+    height: auto;
+    font-size: 56px;
+    .header__title {
+        font-size: 2em;
+        display: block;
+    }
+    .header__subtitle {
+        font-size: 1em;
+        display: block;
     }
 }

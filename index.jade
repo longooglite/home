@@ -4,11 +4,9 @@ html
         link(href='public/style/serve.css', rel='stylesheet')
     - var iterateTimes =  function(number){ var arr = []; for(var it = 1; it < number; it++){ arr.push(it)}; return arr; };
     body
-        header.header
-            include components/header
+        include components/header
         .wrapper
-            .leftnav.desktop-only
-                include components/leftnav
+            include components/leftnav
             .main
                 .contact
                     h3 Contact Me

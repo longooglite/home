@@ -1,0 +1,9 @@
+nav.nav__wrapper.nav__wrapper--horizontal.mobile-only
+    a.nav__link.nav__link--horizontal(href=locals.navLinks[0].href)= locals.navLinks[0].title
+    a.nav__link.nav__link--horizontal(href = locals.navLinks[1].href)= locals.navLinks[1].title
+    if locals.navLinks.length > 2
+        a.nav__trigger.nav__trigger--horizontal#show-more-trigger(href='#0') more...
+        .nav__overflow.nav__overflow--hidden
+            each link, index in locals.navLinks
+                if index > 1
+                    a.nav__link.nav__link--overflow(href=link.href)= link.title

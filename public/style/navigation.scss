@@ -1,0 +1,65 @@
+@import "utils/colors";
+@import "utils/dimensions";
+@import "utils/layouts";
+@import "utils/elements";
+@import "utils/fonts";
+.nav__wrapper {
+    background: $lnbg;
+    border-right: solid $borg 1px;
+}
+.nav__wrapper--horizontal {
+    @include horizontalWrapper();
+    position: relative;
+    overflow: visible;
+}
+.nav__wrapper--vertical {
+    @include horizontal();
+    @include equalHeightColumn(1);
+    width: $leftnav-width;
+}
+.nav__link,
+.nav__trigger {
+    padding: $lnp;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: $display;
+    font-weight: bold;
+    font-size: 1.42rem;
+    letter-spacing: 1px;
+    cursor: pointer;
+    @if $display == 'Poiret One' {
+        letter-spacing: .5em;
+    }
+    &:active {
+        background: $white;
+    }
+    &:hover,
+    &:focus {
+        color: $white;
+        outline: none;
+        background: $sg;
+    }
+}
+.nav__link--vertical,
+.nav__trigger--vertical {
+    display: block;
+    width: 100%;
+}
+.nav__link--horizontal,
+.nav__trigger--horizontal {
+    display: inline-block;
+    width: 33%;
+    font-size: 3rem;
+}
+.nav__link--overflow {
+    display: block;
+    width: 100%;
+    text-align: left;
+    font-size: 3rem;
+}
+.nav__overflow {
+    display: block;
+}
+.nav__overflow--hidden {
+    display: none;
+}

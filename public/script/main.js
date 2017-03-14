@@ -5,22 +5,21 @@ utils.screenSize();
 document.addEventListener('scroll', function() {
     var header = document.getElementsByClassName('header')[0];
     if(window.scrollY > 100) {
-        utils.addClass(header, 'mini');
+        utils.addClass(header, 'header--mini');
     } else {
-        utils.removeClass(header, 'mini');
+        utils.removeClass(header, 'header--mini');
     }
 });
-document.addEventListener('click', function(e) {
-    if(e.target.className.indexOf('more-link') >= 0) {
-        e.preventDefault();
-        var header = document.getElementsByClassName('topnav')[0];
-        if(header.className.indexOf('show-more') >= 0) {
-            utils.removeClass(header, 'show-more');
-            e.target.innerText = 'more...';
-        } else {
-            utils.addClass(header, 'show-more');
-            e.target.innerText = 'close';
-        }
+var showMoreTrigger = document.getElementById('show-more-trigger');
+showMoreTrigger.addEventListener('click', function(e) {
+    e.preventDefault();
+    var navOverflow = document.getElementsByClassName('nav__overflow')[0];
+    if(navOverflow.className.indexOf('--hidden') >= 0) {
+        utils.removeClass(navOverflow, 'nav__overflow--hidden');
+        e.target.innerText = 'close';
+    } else {
+        utils.addClass(navOverflow, 'nav__overflow--hidden');
+        e.target.innerText = 'more...';
     }
 });
 window.addEventListener('resize', utils.screenSize);

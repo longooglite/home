@@ -20,13 +20,4 @@ body {
     font-family: $mainFont;
     max-width: $gutter-width;
     min-height: 30rem;
-    &.modal-open {
-        overflow: hidden !important;
-    }
-    a:link {
-        color: $pg;
-    }
-    a:visited {
-        color: $sg;
-    }
 }

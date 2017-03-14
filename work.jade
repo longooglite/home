@@ -4,11 +4,9 @@ html
         title= locals.title
         link(href='./public/style/serve.css', rel='stylesheet')
     body
-        header.header
-            include components/header
+        include components/header
         .wrapper
-            .leftnav.desktop-only
-                include components/leftnav
+            include components/leftnav
             .main
                 - var imgPath = './public/images'
                 .recent-work
