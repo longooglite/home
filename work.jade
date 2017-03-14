@@ -8,30 +8,23 @@ html
         .wrapper
             include components/leftnav
             .main
-                - var imgPath = './public/images'
+                - var imgPath = './public/images/'
+                include components/image-pair_mixin
                 .recent-work
                     h3 Recent Work
-                    .mountain-pass.recent-employer
+                    .image-pair__list
                         h4 Mountain Pass Solutions
-                        p At Mountain Pass, I developed rich, asynchronous web apps like the workflow builder
-                            img(src='#{imgPath}/MPS/workflow_builder.png')
-                        p and the Roster data table
-                            img(src='#{imgPath}/MPS/roster_closed.png')
-                        p I also maintained and updated the existing design, from this
-                            img(src='#{imgPath}/MPS/old_design.png')
-                        p to this
-                            img(src='#{imgPath}/MPS/workflow.png')
-                    .dotsignal.recent-employer
+                        + imagePair(imgPath, 'MPS/workflow_builder.png', 'At Mountain Pass, I developed rich, asynchronous web apps like the workflow builder')
+                        + imagePair(imgPath, 'MPS/roster_closed.png', 'and the Roster data table')
+                        + imagePair(imgPath, 'MPS/old_design.png', 'I also maintained and updated the existing design, from this')
+                        + imagePair(imgPath, 'MPS/workflow.png', 'to this')
+                    .image-pair__list
                         h4 DotSignal Inc
-                        p At DotSignal I developed the mobile search app from scratch.
-                            img.portrait(src='#{imgPath}/DS/ds-app.png')
-                        p It was a single page rich web app for finding properties and connecting with agents.
-                            img.portrait(src='#{imgPath}/DS/ds-list.png')
-                        p I wrote the front and back ends on top of their data structure,
-                            img.portrait(src='#{imgPath}/DS/ds-detail.png')
-                        p and designed the experience to be consistent with their brand.
-                            img.portrait(src='#{imgPath}/DS/ds-location.png')
-                    .dst.side-project
+                        + imagePair(imgPath, 'DS/ds-app.png', 'At DotSignal I developed the mobile search app from scratch.', true)
+                        + imagePair(imgPath, 'DS/ds-list.png', 'It was a single page rich web app for finding properties and connecting with agents.', true)
+                        + imagePair(imgPath, 'DS/ds-detail.png', 'I wrote the front and back ends on top of their data structure,', true)
+                        + imagePair(imgPath, 'DS/ds-location.png', 'and designed the experience to be consistent with their brand.', true)
+                    div
                         h4 Dead Simple Tables
                         p As a side project, I've been developing Dead Simple Tables or DST, which has been used on the home page for this application
                             a(href="https://github.com/longooglite/Dead-Simple-Tables") You can view the project here.

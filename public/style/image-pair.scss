@@ -1,0 +1,29 @@
+@import "utils/fonts";
+.image-pair__list {
+    font-size: 0;
+}
+.image-pair__container {
+    width: 50%;
+    padding: 5px;
+    display: inline-block;
+    vertical-align: top;
+    font-size: $rem;
+}
+.image-pair__text {
+    display: block;
+    height: 50px;
+}
+.image-pair__img {
+    display: block;
+    height: 325px;
+    padding: 10px;
+}
+body.mobile {
+    .image-pair__container {
+        width: 100%;
+    }
+    .image-pair__img {
+        height: auto;
+        width: 100%;
+    }
+}

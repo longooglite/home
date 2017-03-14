@@ -1,7 +1,7 @@
-span= locals.footerText.required
-    - var getRandomInt = function(ceiling, floor) { floor = floor ? floor : 0; return (Math.floor(Math.random() * ceiling) + floor); }
-    - var useOptional = getRandomInt(2)
-    if(useOptional)
-        span.optional
-            - var useText = locals.footerText.optional[getRandomInt(locals.footerText.optional.length - 1)];
-            | | #{useText}
+span.footer__text= locals.footerText.required
+- var getRandomInt = function(ceiling, floor) { floor = floor ? floor : 0; return (Math.floor(Math.random() * ceiling) + floor); }
+- var useOptional = getRandomInt(2)
+if(useOptional)
+    span.footer__text--optional
+        - var useText = locals.footerText.optional[getRandomInt(locals.footerText.optional.length - 1)];
+        | | #{useText}

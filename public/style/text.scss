@@ -1,3 +1,6 @@
+@import 'utils/fonts';
+@import 'utils/colors';
+
 p {
     font-size: 18px;
     letter-spacing: 2px;
@@ -15,6 +18,19 @@ pre {
 
 .mobile pre {
     font-size: 36px;
+}
+
+h3 {
+    margin-bottom: 20px;
+    font-size: 34px;
+    color: $pg;
+    font-family: $display;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+}
+
+.mobile h3 {
+    font-size: 68px;
 }
 
 h4  {

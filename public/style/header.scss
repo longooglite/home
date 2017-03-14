@@ -32,11 +32,9 @@
     height: $hmh;
     font-size: 28px;
     .header__title {
-        font-size: 2em;
         display: inline-block;
     }
     .header__subtitle {
-        font-size: 1em;
         display: inline-block;
     }
 }
@@ -45,11 +43,11 @@ body.mobile .header {
     height: auto;
     font-size: 56px;
     .header__title {
-        font-size: 2em;
         display: block;
+        text-align: center;
     }
     .header__subtitle {
-        font-size: 1em;
         display: block;
+        text-align: center;
     }
 }

@@ -1,0 +1,7 @@
+mixin imagePair(basepath, location, text, portrait)
+    .image-pair__container
+        p.image-pair__text= text
+        if portrait
+            img.image-pair__img.image-pair__img--portrait(src=basepath+location)
+        else
+            img.image-pair__img.image-pair__img--landscape(src=basepath + location)
