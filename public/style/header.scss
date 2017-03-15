@@ -11,8 +11,11 @@
     width: $gutter-width;
     background: $white;
     font-family: $header;
+    display: flex;
     border-bottom: solid $pg 1px;
     white-space: nowrap;
+    flex-direction: column;
+    align-items: flex-end;
 }
 .header__title {
     color: $pg;
@@ -31,11 +34,10 @@
 .header--mini {
     height: $hmh;
     font-size: 1.5 * $rem;
+    align-items: baseline;
+    flex-direction: row;
     .header__title {
-        display: inline-block;
-    }
-    .header__subtitle {
-        display: inline-block;
+        margin-right: 10px;
     }
 }
 
