@@ -1,0 +1,32 @@
+@import "utils/fonts";
+.detail-list {
+    font-size: $rem;
+}
+.detail-list__item {
+    margin: 20px 0;
+}
+.detail-list__title {
+    display: block;
+    margin-bottom: 5px;
+}
+.detail-list__subtitle {
+    display: block;
+    font-size: $rem;
+    letter-spacing: 2px;
+    font-weight: 300;
+    margin-bottom: 5px;
+}
+.detail-list__detail {
+    font-size: $rem;
+    letter-spacing: 2px;
+    font-weight: 300;
+    &:after {
+        content: ', ';
+    }
+    &:last-of-type:after {
+        content: ' ';
+    }
+    &:first-of-type {
+        margin-left: $rem;
+    }
+}

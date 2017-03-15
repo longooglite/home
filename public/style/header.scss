@@ -44,6 +44,8 @@
 body.mobile .header {
     height: auto;
     font-size: 3 * $rem;
+    display: block;
+    text-align: center;
     .header__title {
         display: block;
         text-align: center;

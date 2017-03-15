@@ -1,0 +1,30 @@
+@import "utils/fonts";
+@import "utils/colors";
+.table {
+    margin-top: 20px;
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+}
+.table__header {
+    font-size: 1.25 * $rem;
+    font-family: $display;
+    text-transform: uppercase;
+    color: $dark-font-gray;
+    letter-spacing: 2px;
+}
+.table__cell {
+    text-align: center;
+    font-weight: 300;
+    letter-spacing: 2px;
+    margin: 0;
+    padding: 25px 10px;
+}
+.table__text {
+    &:after {
+        content: ', ';
+    }
+    &:last-of-type:after {
+        content: '';
+    }
+}

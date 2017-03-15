@@ -16,29 +16,29 @@ html
                         a(href="tel:9893720095") 989-372-0095
                 .expertise
                     h3 Expertise
-                    table.expertise-table.sortable.searchable.selectable.desktop-only
-                        thead
-                            tr
-                                th Technology
-                                th Years experience
-                                th Associated technologies
-                        tbody
+                    table.table.sortable.searchable.selectable.desktop-only
+                        thead.table__head
+                            tr.table__row
+                                th.table__header Technology
+                                th.table__header Years experience
+                                th.table__header Associated technologies
+                        tbody.table__body
                             each tech in locals.expertise
-                                tr
-                                    td= tech.technology
-                                    td= tech.years
-                                    td
+                                tr.table__row
+                                    td.table__cell= tech.technology
+                                    td.table__cell= tech.years
+                                    td.table__cell
                                         each t in tech.associated
-                                            span= t
+                                            span.table__text= t
 
-                    .mobile-only.expertise-mobile
+                    .mobile-only.expertise-mobile.detail-list
                         each tech in locals.expertise
-                            div.tech
-                                h4= tech.technology
-                                h4 Years: #{tech.years}
-                                .associated Also:
+                            .detail-list__item
+                                h4.detail-list__title= tech.technology
+                                span.detail-list__subtitle Years: #{tech.years}
+                                .detail-list__details Also:
                                     each ass in tech.associated
-                                        span= ass
+                                        span.detail-list__detail= ass
         footer.footer
             include components/footer
     script(src='https://cdn.rawgit.com/longooglite/Dead-Simple-Tables/master/dst.min.js')

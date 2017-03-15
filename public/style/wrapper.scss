@@ -5,7 +5,6 @@
 .wrapper {
     @include equalHeightColumnWrapper();
     @include horizontalWrapper();
-    min-height: calc(100% - #{$hh + $fh});
     position: relative;
     top: $hh;
     background: $white;
@@ -13,8 +12,7 @@
 }
 .mobile {
     .wrapper {
-        top: 335px;
-        min-height: calc(100% - #{$hmh + $fh});
+        top: 300px;
     }
 }
 .mini .wrapper {
