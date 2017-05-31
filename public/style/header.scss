@@ -55,3 +55,10 @@ body.mobile .header {
         text-align: center;
     }
 }
+
+.header__link {
+    text-decoration: none;
+    &:visited {
+        color: $pg;
+    }
+}

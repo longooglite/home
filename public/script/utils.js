@@ -133,6 +133,35 @@ module.exports.getChildIndex = function(child) {
     }
     return child_index;
 };
+var arrayCopy = function(arr) {
+    var newarr = [];
+    for(var a = 0; a < arr.length; a++) {
+        if(arr[a] !== null && typeof arr[a] === 'object') {
+            newarr[a] = carbonCopy(arr[a]);
+        } else if(arr[a].constructor === Array) {
+            newarr[a] = arrayCopy(arr[a]);
+        } else {
+            newarr[a] = arr[a];
+        }
+    }
+}
+module.exports.arrayCopy = arrayCopy;
+var carbonCopy = function(obj) {
+    var newobj = {};
+    for(var i in obj) {
+        if(obj.hasOwnProperty(i)) {
+            if(obj[i] !== null && typeof obj[i] === 'object') {
+                newobj[i] = carbonCopy(obj[i]);
+            } else if(obj[i].constructor === Array) {
+                newobj[i] = arrayCopy(obj[i]);
+            } else {
+                newobj[i] = obj[i];
+            }
+        }
+    }
+    return newobj;
+}
+module.exports.carbonCopy = carbonCopy;
 module.exports.toggleClass = function(element, cName) {
     var setter = element.className.indexOf(cName) >= 0 ? removeClass : addClass;
     return setter(element, cName);
