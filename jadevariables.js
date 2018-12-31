@@ -6,7 +6,7 @@ module.exports.jadevars = {
             'href':'./'
         }, {
             'title': 'resume',
-            'href': '//drive.google.com/file/d/0B0bcseZsc82KZ0Vrb0JvNFAzMms/view?usp=sharing'
+            'href': '//drive.google.com/file/d/1VBmezzae2BHA52Iff2zDaoNC5xp1SBYb/view?usp=sharing'
         }, {
             'title': 'reddit',
             'href': '//reddit.com/u/k_longuski'
