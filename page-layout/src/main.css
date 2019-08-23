@@ -1,0 +1,79 @@
+* {
+    --base-length: 300px;
+}
+
+.wrapper {
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.wrapper > button {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+}
+
+.page {
+    margin: 20px;
+    display: inline-block;
+}
+
+.page > form, .page > button {
+    display: inline-block;
+}
+
+.panel-content {
+    background-color: #cdcdcd;
+    display: grid;
+    grid-template-columns: repeat(3, var(--base-length));
+    grid-template-rows: repeat(3, var(--base-length));
+    grid-gap: 20px;
+    counter-reset: panels;
+}
+
+.panel {
+    background-color: silver;
+    position: relative;
+    counter-increment: panels;
+}
+
+.panel:before {
+    content: counter(panels);
+    position: absolute;
+    bottom: 0;
+}
+
+.panel button {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.panel textarea {
+    background-color: darkgray;
+    border: none;
+    outline: none;
+    resize: none;
+    height: calc(var(--base-length) / 2);
+    width: 100%;
+}
+
+[data-panel-width="1"] {
+    grid-column-start: span 1;
+}
+[data-panel-width="2"] {
+    grid-column-start: span 2;
+}
+[data-panel-width="3"] {
+    grid-column-start: span 3;
+}
+[data-panel-height="1"] {
+    grid-row-start: span 1;
+}
+[data-panel-height="2"] {
+    grid-row-start: span 2;
+}
+[data-panel-height="3"] {
+    grid-row-start: span 3;
+}
