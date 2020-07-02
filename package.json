@@ -35,8 +35,10 @@
     "node-sass": "^4.14.1",
     "postcss-flexibility": "^1.1.1",
     "postcss-font-magician": "^1.6.1",
+    "vinyl": "^2.2.0",
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^1.1.2",
-    "walk": "^2.3.14"
+    "walk": "^2.3.14",
+    "webpack": "^4.43.0"
   }
 }

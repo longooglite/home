@@ -1,9 +1,8 @@
 var gulp = require('gulp');
-var browserify = require('browserify');
+var webpack = require('webpack')
+var webpackConfig = require('./webpack.config.js')
 var minify = require('gulp-minify');
 var fontmagic = require('postcss-font-magician');
-var source = require('vinyl-source-stream');
-var buffer = require('vinyl-buffer');
 var jadevars = require('./jadevariables.js').jadevars;
 var sass = require('gulp-sass');
 var postcss = require("gulp-postcss");
@@ -43,22 +42,21 @@ gulp.task('jade', function(){
         }))
         .pipe(gulp.dest(output));
 });
-gulp.task('browser', function(){
-    var buildscript = function() {
-        var bundler = browserify({
-            entries: './public/script/main.js',
-            debug: true
-        });
-        var handleErrors = function(error){
-            console.log(error);
-        };
-        var stream = bundler.bundle();
-        return stream.on('error', handleErrors)
-            .pipe(source('serve.js'))
-            .pipe(gulp.dest('./public/script'));
-    };
-    return buildscript();
+
+gulp.task('webpack', function(){
+    return new Promise((resolve, reject) => {
+        webpack(webpackConfig, (err, stats) => {
+            if (err) {
+                return reject(err);
+            }
+            if (stats.hasErrors()) {
+                return reject(new Error(stats.compilation.errors.join('\n')));
+            }
+            resolve();
+        })
+    })
 });
+
 gulp.task('watch', function(){
     gulp.watch('./main.js',[
         'browser'
@@ -75,4 +73,4 @@ gulp.task('watch', function(){
 });
 
 
-gulp.task('default', gulp.series('browser', 'jade', 'postsass'));
+gulp.task('default', gulp.series('webpack', 'jade', 'postsass'));
