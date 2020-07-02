@@ -16,7 +16,6 @@ var fs = require("fs");
 var marked = require("marked");
 var walk = require("walk");
 jadevars.articles = [];
-gulp.task('default', ['browser', 'jade', 'postsass']);
 gulp.task('postsass', function(){
     var source = "./public/style/*.scss";
     var output = "./public/style/";
@@ -74,3 +73,6 @@ gulp.task('watch', function(){
         'jade'
     ]);
 });
+
+
+gulp.task('default', gulp.series('browser', 'jade', 'postsass'));

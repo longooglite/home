@@ -33,7 +33,7 @@ module.exports.jadevars = {
         'optional': [
             "I was voted Most Likely to Take Over the World in high school",
             "Did you know that this legal stuff doesn't really do anything? I own the copyright whether I put it here or not.",
-            "#resist"
+            "I main Bard but have been interested in Monk 5/Barbarian X"
         ]
     }
 };
