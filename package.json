@@ -30,7 +30,7 @@
     "gulp-minify": "0.0.11",
     "gulp-postcss": "^6.4.0",
     "gulp-sass": "^3.2.1",
-    "marked": "^0.3.19",
+    "marked": "^4.0.10",
     "md5": "^2.2.1",
     "node-sass": "^4.14.1",
     "postcss-flexibility": "^1.1.1",
